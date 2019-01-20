@@ -11,4 +11,5 @@ src_group(Main sources
     Module_DearImGui.hpp
     DearImGui.hpp
     SokolGFX.hpp
+    ImGuiPlotMulti.cpp
 )

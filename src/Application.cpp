@@ -269,9 +269,20 @@ void Application::setDefaultPassAction(const sg_pass_action& action)
     m_passAction = action;
 }
 
+int Application::screenWidth()
+{
+    return sapp_width();
+}
+
+int Application::screenHeight()
+{
+    return sapp_height();
+}
+
 sapp_desc Application::main(int argc, char* argv[])
 {
     sapp_desc desc = {};
+    desc.window_title = "VR DVH";
     desc.width = 1024;
     desc.height = 768;
     desc.init_cb = init;

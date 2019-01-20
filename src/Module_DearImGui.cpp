@@ -33,6 +33,32 @@ sg_bindings m_bindings;
 const int Max_Vertices = (1 << 17);
 const int Max_Indices = Max_Vertices * 3;
 
+#if defined(__EMSCRIPTEN__)
+
+const char* vs_src =
+    "uniform vec2 disp_size;\n"
+    "attribute vec2 position;\n"
+    "attribute vec2 texcoord0;\n"
+    "attribute vec4 color0;\n"
+    "varying vec2 uv;\n"
+    "varying vec4 color;\n"
+    "void main() {\n"
+    "    gl_Position = vec4(((position/disp_size)-0.5)*vec2(2.0,-2.0), 0.5, 1.0);\n"
+    "    uv = texcoord0;\n"
+    "    color = color0;\n"
+    "}\n";
+
+const char* fs_src =
+    "precision mediump float;"
+    "uniform sampler2D tex;\n"
+    "varying vec2 uv;\n"
+    "varying vec4 color;\n"
+    "void main() {\n"
+    "    gl_FragColor = texture2D(tex, uv) * color;\n"
+    "}\n";
+
+#else
+
 const char* vs_src =
     "#version 330\n"
     "uniform vec2 disp_size;\n"
@@ -56,6 +82,8 @@ const char* fs_src =
     "void main() {\n"
     "    frag_color = texture(tex, uv) * color;\n"
     "}\n";
+
+#endif
 
 //~ const char* vs_src =
 //~ "//cbuffer params {\n"
@@ -114,6 +142,8 @@ bool Module_DearImGui::init()
     //io.SetClipboardTextFn = SetClipboardText;
 
     io.UserData = nullptr; // something else maybe?
+
+    ImGui::StyleColorsLight();
 
     io.KeyMap[ImGuiKey_Tab] = SAPP_KEYCODE_TAB;
     io.KeyMap[ImGuiKey_LeftArrow] = SAPP_KEYCODE_LEFT;

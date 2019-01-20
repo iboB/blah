@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>DVH</title>
+</head>
+<body>
+  <canvas class="main-canvas" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+
+  <script type="text/javascript">
+    var Module = {
+        preRun: [],
+        postRun: [],
+        print: (function() {
+            return function(text) {
+                text = Array.prototype.slice.call(arguments).join(' ');
+                console.log(text);
+            };
+        })(),
+        printErr: function(text) {
+            text = Array.prototype.slice.call(arguments).join(' ');
+            console.error(text);
+        },
+        canvas: (function() {
+            var canvas = document.getElementById('canvas');
+            canvas.addEventListener("webglcontextlost", function(e) { alert('FIXME: WebGL context lost, please reload the page'); e.preventDefault(); }, false);
+            return canvas;
+        })(),
+        setStatus: function(text) {
+            console.log("status: " + text);
+        },
+        monitorRunDependencies: function(left) {
+            console.log("monitor run deps: " + left);
+        },
+    };
+
+    window.onerror = function(event) {
+        console.log("onerror: " + event);
+    };
+  </script>
+  <script async type="text/javascript" src="build/emcc-debug/src/vr-dvh.js"></script>
+</body>
+</html>

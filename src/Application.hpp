@@ -25,6 +25,8 @@ public:
     static void setState(AppStatePtr state);
 
     // rendering
+    static int screenWidth();
+    static int screenHeight();
     static const sg_pass_action& defaultPassAction();
     static void setDefaultPassAction(const sg_pass_action&);
 
