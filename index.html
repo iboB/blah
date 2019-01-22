@@ -5,7 +5,7 @@
 <title>DVH</title>
 </head>
 <body>
-  <canvas class="main-canvas" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+  <canvas class="main-canvas" id="canvas" style="width:100%; height:100%;" oncontextmenu="event.preventDefault()"></canvas>
 
   <script type="text/javascript">
     var Module = {
@@ -38,6 +38,6 @@
         console.log("onerror: " + event);
     };
   </script>
-  <script async type="text/javascript" src="build/emcc-debug/src/vr-dvh.js"></script>
+  <script async type="text/javascript" src="build/emrls/src/sokol-test.js"></script>
 </body>
 </html>
