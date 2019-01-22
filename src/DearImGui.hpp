@@ -6,6 +6,7 @@
 namespace ImGui
 {
 
+// taken from here: https://github.com/ocornut/imgui/issues/632
 void PlotMultiLines(
     const char* label,
     int num_datas,
