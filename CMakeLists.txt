@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.2.2)
 # IDE folders
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-project(vr-dvh)
+project(sokol-test)
 
 set(CMAKE_CXX_STANDARD 14)
 
